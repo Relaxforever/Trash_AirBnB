@@ -9,11 +9,22 @@ import datetime
 class BaseModel:
     """ Base class that holds """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ placeholder """
-        self.id = str(uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = self.created_at
+        if len(kwargs) != 0:
+            for key, item in kwargs.items():
+                if key == "created_at":
+                    self.created_at = datetime.strptime(
+                        key, "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == "updated_at":
+                    self.updated_at = datetime.strptime(
+                        key, "%Y-%m-%dT%H:%M:%S.%f")
+                else:
+                    self.key = item
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def __str__(self):
         """ placeholder """
