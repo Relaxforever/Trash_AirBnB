@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """ Base Module for the AirBnB Project """
-
-
 from uuid import uuid4
 import datetime
+from models import storage
 
 
 class BaseModel:
@@ -27,6 +26,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """ placeholder """
@@ -38,6 +38,7 @@ class BaseModel:
     def save(self):
         """ placeholder """
         self.updated_at = datetime.datetime.now()
+        storage.save()
 
     def to_dict(self):
         """ to_dict: this method converts object to a dict
