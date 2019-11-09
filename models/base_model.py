@@ -13,14 +13,16 @@ class BaseModel:
         """ placeholder """
         if len(kwargs) != 0:
             for key, item in kwargs.items():
+                if key == "__class__":
+                    continue
                 if key == "created_at":
-                    self.created_at = datetime.strptime(
-                        key, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.created_at = datetime.datetime.strptime(
+                        item, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key == "updated_at":
-                    self.updated_at = datetime.strptime(
-                        key, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.updated_at = datetime.datetime.strptime(
+                        item, "%Y-%m-%dT%H:%M:%S.%f")
                 else:
-                    self.key = item
+                    setattr(self, key, item)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.datetime.now()
