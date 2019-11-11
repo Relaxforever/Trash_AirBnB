@@ -21,23 +21,30 @@ class FileStorage:
             Args: obj
             Return: Void
         """
-        FileStorage.__objects[obj.__class__.__name__ + '.' + str(obj.id)] = obj#.to_dict()
+        FileStorage.__objects[obj.__class__.__name__ + '.' + str(obj.id)] = obj
 
     def save(self):
         """ save - serializes __objects to the JSON file
             Args: Void
             Return: Void
         """
+        tmp = {}
+        for key, value in FileStorage.__objects.items():
+            tmp[key] = value.to_dict()
+
         with open(FileStorage.__file_path, "w") as f:
-            json.dump(FileStorage.__objects, f)
+            json.dump(tmp, f)
 
     def reload(self):
         """ reload - deserializes the JSON file to __objects
             Args: Void
             Return: Void
         """
+        from models.base_model import BaseModel
         try:
             with open(FileStorage.__file_path, "r") as f:
-                FileStorage.__objects = json.load(f)
+                tmp = json.load(f)
+                for key, value in tmp.items():
+                    FileStorage.__objects[key] = BaseModel(**value)
         except:
             pass
