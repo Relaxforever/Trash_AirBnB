@@ -13,7 +13,7 @@ class City(BaseModel):
             the name of the city
             """
 
-    def __init__(self, state_id=None, name=None, *args, **kwargs):
+    def __init__(self, state_id="", name="", *args, **kwargs):
         """ Parameters
             ----------
             state_id : str

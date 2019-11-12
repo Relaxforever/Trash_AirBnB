@@ -11,7 +11,7 @@ class Amenity(BaseModel):
             the name of the amenity
             """
 
-    def __init__(self, name=None, *args, **kwargs):
+    def __init__(self, name="", *args, **kwargs):
         """ Parameters
             ----------
             name : str

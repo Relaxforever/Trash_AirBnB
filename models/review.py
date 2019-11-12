@@ -15,7 +15,7 @@ class Review(BaseModel):
             the text/review
             """
 
-    def __init__(self, place_id=None, user_id=None, text=None, *args, **kwargs):
+    def __init__(self, place_id="", user_id="", text="", *args, **kwargs):
         """ Parameters
             ----------
             place_id : str

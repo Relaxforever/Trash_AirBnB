@@ -17,8 +17,8 @@ class User(BaseModel):
             last legal name of the user
     """
 
-    def __init__(self, email=None, password=None, first_name=None,
-                 last_name=None, *args, **kwargs):
+    def __init__(self, email="", password="", first_name="",
+                 last_name="", *args, **kwargs):
         """ Parameters
             ----------
         email : str
