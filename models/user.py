@@ -18,7 +18,7 @@ class User(BaseModel):
     """
 
     def __init__(self, email=None, password=None, first_name=None,
-                 last_name=None):
+                 last_name=None, *args, **kwargs):
         """ Parameters
             ----------
         email : str
@@ -30,4 +30,4 @@ class User(BaseModel):
         last_name: str
             last legal name of the user
         """
-        super().__init__()
+        super().__init__(*args, **kwargs)
