@@ -15,7 +15,7 @@ class Review(BaseModel):
             the text/review
             """
 
-    def __init__(self, place_id=None, user_id=None, text=None):
+    def __init__(self, place_id=None, user_id=None, text=None, *args, **kwargs):
         """ Parameters
             ----------
             place_id : str
@@ -25,4 +25,4 @@ class Review(BaseModel):
             text_id: str
                 the user text/review
                 """
-        super().__init__()
+        super().__init__(*args, **kwargs)

@@ -31,10 +31,10 @@ class Place(BaseModel):
             it will be the list of Amenity.id later
             """
 
-    def __init__(self, city_id=None, user_id=None, name=None, description=None
+    def __init__(self, city_id="", user_id="", name="", description="",
                  number_rooms=0, number_bathrooms=0, max_guest=0,
                  price_by_night=0, latitude=0.0, longitude=0.0,
-                 amenity_ids=[]):
+                 amenity_ids=[], *args, **kwargs):
         """ Parameters
             ----------
         city_id: str
@@ -61,4 +61,4 @@ class Place(BaseModel):
             it will be the list of Amenity.id later
             """
 
-        super().__init__()
+        super().__init__(*args, **kwargs)

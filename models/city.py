@@ -13,7 +13,7 @@ class City(BaseModel):
             the name of the city
             """
 
-    def __init__(self, state_id=None, name=None):
+    def __init__(self, state_id=None, name=None, *args, **kwargs):
         """ Parameters
             ----------
             state_id : str
@@ -21,4 +21,4 @@ class City(BaseModel):
             name : str
                 the name of the state
                 """
-        super().__init__()
+        super().__init__(*args, **kwargs)
