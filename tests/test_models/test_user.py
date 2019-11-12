@@ -12,7 +12,7 @@ class Test_user(unittest.TestCase):
     def test_pep8_pycodestyle(self):
         """ See if pep8 worked """
         pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/city.py'])
+        result = pep8style.check_files(['models/user.py'])
         self.assertEqual(result.total_errors, 0, "found errors pep8")
 
     def test_ifdocumented(self):
