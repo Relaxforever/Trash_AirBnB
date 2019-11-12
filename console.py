@@ -3,6 +3,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+import json
 
 
 class HBNBCommand(cmd.Cmd):
@@ -36,18 +37,15 @@ class HBNBCommand(cmd.Cmd):
             if splitted[0] == "BaseModel":
                 try:
                     all_objs = storage.all()
-                    #for key in all_objs.keys():
-                    #    if (key == arg):
-                    #        break
                     print(all_objs["BaseModel." + splitted[1]])
                 except:
                     print("** no instance found **")
             else:
                 print("** class doesn't exist **")
-        elif len(splitted) == 1:
-            print("** instance id missing **")
         elif len(splitted) == 0:
             print("** class name missing **")
+        elif len(splitted) == 1:
+            print("** instance id missing **")
 
     def do_all(self, line):
         """Prints all string representation of all
@@ -65,6 +63,51 @@ class HBNBCommand(cmd.Cmd):
                 print(obj)
         else:
             print("** class doesn't exist **")
+
+    def do_destroy(self, line):
+        """Deletes an instance based on the class name and id"""
+
+        splitted = line.split()
+        if len(splitted) == 2:
+            if splitted[0] == "BaseModel":
+                try:
+                    all_objs = storage.all()
+                    del all_objs["BaseModel." + splitted[1]]
+                    storage.save()
+                except:
+                    print("** no instance found **")
+            else:
+                print("** class doesn't exist **")
+        elif len(splitted) == 0:
+            print("** class name missing **")
+        elif len(splitted) == 1:
+            print("** instance id missing **")
+
+    def do_update(self, line):
+        """Updates an instance based on the class name
+            and id by adding or updating attribute"""
+
+        splitted = line.split()
+        all_objs = storage.all()
+        if len(splitted) == 0:
+            print("** class name missing **")
+        elif splitted[0] != "BaseModel":
+            print("** class doesn't exist **")
+        elif len(splitted) == 1:
+            print("** instance id missing **")
+        elif "BaseModel." + splitted[1] not in all_objs.keys():
+            print("** no instance found **")
+        elif len(splitted) == 2:
+            print("** attribute name missing **")
+        elif len(splitted) == 3:
+            print("** value missing **")
+        else:
+            if "BaseModel." + splitted[1] in all_objs.keys():
+                setattr(all_objs["BaseModel." + splitted[1]],
+                        splitted[2], splitted[3])
+                storage.save()
+            else:
+                print("** no instance found **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
