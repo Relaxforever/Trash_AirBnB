@@ -10,7 +10,6 @@ from models.base_model import BaseModel
 class Tester_forAirBnB(unittest.TestCase):
     """ Tester that checks whetever everything is working as intended """
 
-
     def test_pep8_pycodestyle(self):
         """ Tester for pep8/pycodestyle """
         pep8style = pep8.StyleGuide(quiet=True)
