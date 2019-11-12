@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Subclass of BaseModel in charge of saving the amenity name """
-fromd models import BaseModel
+fromd models.base_model import BaseModel
 
 
 class Amenity(BaseModel):

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Subclass of BaseModel in charge of saving the city name """
-fromd models import BaseModel
+fromd models.base_model import BaseModel
 
 
 class City(BaseModel):
