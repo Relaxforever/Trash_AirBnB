@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Subclass of BaseModel in charge of saving the review """
-fromd models.base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class Review(BaseModel):
