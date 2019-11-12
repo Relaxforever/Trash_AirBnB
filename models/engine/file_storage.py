@@ -52,7 +52,6 @@ class FileStorage:
             with open(FileStorage.__file_path, "r") as f:
                 tmp = json.load(f)
                 for key, value in tmp.items():
-                    #FileStorage.__objects[key] = globals()[str(value["__class__"])](**value)
                     if value["__class__"] == "BaseModel":
                         FileStorage.__objects[key] = BaseModel(**value)
                     elif value["__class__"] == "User":

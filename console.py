@@ -105,13 +105,9 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name
             and id by adding or updating attribute"""
 
-        comillas = line.split('"')
-        splitted = comillas[0].split()
+        splitted = line.split()
         list_class = ("BaseModel", "User", "State", "City",
                       "Amenity", "Place", "Review")
-        print("****************************")
-        print(splitted)
-        print("****************************")
         all_objs = storage.all()
         if len(splitted) == 0:
             print("** class name missing **")
@@ -123,18 +119,13 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         elif len(splitted) == 2:
             print("** attribute name missing **")
-        #elif len(splitted) == 3:
-        elif comillas == "":
+        elif len(splitted) == 3:
             print("** value missing **")
         else:
             if splitted[0] + "." + splitted[1] in all_objs.keys():
-                #value = comillas[1].split('"')[0]
-                try:
-                    setattr(all_objs[splitted[0] + "." + splitted[1]],
-                            splitted[2], comillas[1])
-                    storage.save()
-                except:
-                    print("** value missing **")
+                setattr(all_objs[splitted[0] + "." + splitted[1]],
+                        splitted[2], splitted[3])
+                storage.save()
             else:
                 print("** no instance found **")
 
